@@ -1,0 +1,49 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<script>
+			for(var number = 0; number <= 100; number++)
+			{
+				if(Number.isInteger(number/3) === true && Number.isInteger(number/5) === true)
+				{
+					console.log(number + ": fizz and buzz");
+				}
+				else if(Number.isInteger(number/3) === true)
+				{
+					console.log(number + ": fizz");
+				}
+				else if(Number.isInteger(number/5) === true)
+				{
+					console.log(number + ": buzz");
+				}
+				else
+				{
+					console.log(number);
+				}
+			}
+			//
+			var strings = ["one", "two", "three", "four"]
+			strings.sort();
+			console.log(strings)
+			
+			var string = "abccccc"
+
+			function repeatingLetter(str)
+			{
+				for(var i = 0; i < str.length; i++)
+				{
+					for(var j = i; j < str.length; j++)
+					{
+						if(str[j] === str[i])
+						{
+							return str[j];
+						}
+					}
+				}
+			}
+			
+			console.log(repeatingLetter("abccccc"));
+		</script>
+	</body>
+<html>
