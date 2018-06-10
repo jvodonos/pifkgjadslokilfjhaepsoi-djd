@@ -33,17 +33,19 @@
 			{
 				for(var i = 0; i < str.length; i++)
 				{
-					for(var j = i; j < str.length; j++)
+					for(var j = 0; j < str.length; j++)
 					{
-						if(str[j] === str[i])
+						// console.log(str[j]);
+						if(str[j] == str[i] && !(j == i))
 						{
+							// console.log(`hit ${str[j]} and ${str[i]}`);
 							return str[j];
 						}
 					}
 				}
 			}
 			
-			console.log(repeatingLetter("abccccc"));
+			console.log(repeatingLetter("abbac"));
 		</script>
 	</body>
 <html>
