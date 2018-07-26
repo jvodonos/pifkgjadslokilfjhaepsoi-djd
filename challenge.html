@@ -1,51 +1,352 @@
 <html>
 	<head>
+		<link rel = "stylesheet" href = "css.css"></link>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
+
+			<div class = "grid">
+				<div id = "1" class = "box"></div>
+				<div id = "2" class = "box"></div>
+				<div id = "3" class = "box"></div>
+				<div id = "4" class = "box"></div>
+				<div id = "5" class = "box"></div>
+				<div id = "6" class = "box"></div>
+				<div id = "7" class = "box"></div>
+				<div id = "8" class = "box"></div>
+				<div id = "9" class = "box"></div>
+			</div>
+
+			<div id = "bottomDisplay"></div>
 		<script>
-			for(var number = 0; number <= 100; number++)
+			var currentTeam = true; //when currentTeam is true the team is x
+			var bottomDisplay = document.getElementById("bottomDisplay");
+			var box1;
+			var box2;
+			var box3;
+			var box4;
+			var box5;
+			var box6;
+			var box7;
+			var box8;
+			var box9;
+
+			var horizontalOne = [box1, box2, box3];
+			var horizontalTwo = [box4, box5, box6];
+			var horizontalThree = [box7, box8, box9];
+			var verticalOne = [box1, box4, box7];
+			var verticalTwo = [box2, box5, box8];
+			var verticalThree = [box3, box6, box9];
+			var diagonalOne = [box1, box5, box9];
+			var diagonalTwo = [box7, box8, box9];
+
+
+			bottomDisplay.innerHTML = "Hello!";
+
+			function checkTrue(x)
 			{
-				if(Number.isInteger(number/3) === true && Number.isInteger(number/5) === true)
+				return x === true;
+			}
+
+			function checkFalse(x)
+			{
+				return x === false;
+			}
+			
+			function updateDisplay()
+			{
+				if(currentTeam === true)
 				{
-					console.log(number + ": fizz and buzz");
-				}
-				else if(Number.isInteger(number/3) === true)
-				{
-					console.log(number + ": fizz");
-				}
-				else if(Number.isInteger(number/5) === true)
-				{
-					console.log(number + ": buzz");
+					bottomDisplay.innerHTML = "X's Turn";
 				}
 				else
 				{
-					console.log(number);
+					bottomDisplay.innerHTML = "O's Turn";
 				}
 			}
-			//
-			var strings = ["one", "two", "three", "four"]
-			strings.sort();
-			console.log(strings)
-			
-			var string = "abccccc"
 
-			function repeatingLetter(str)
+			function oWins()
 			{
-				for(var i = 0; i < str.length; i++)
+				bottomDisplay.innerHTML = "O Wins!!!";
+			}
+
+			function xWins()
+			{
+				bottomDisplay.innerHTML = "X Wins!!!";
+			}
+
+			function checkWin()
+			{
+				if(horizontalOne.every(checkTrue) === true)
 				{
-					for(var j = 0; j < str.length; j++)
+					xWins();
+				}
+				else if(horizontalTwo.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(horizontalThree.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(verticalOne.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(verticalTwo.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(verticalThree.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(diagonalOne.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(diagonalTwo.every(checkTrue) === true)
+				{
+					xWins();
+				}
+				else if(horizontalOne.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(horizontalTwo.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(horizontalThree.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(verticalOne.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(verticalTwo.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(verticalThree.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(diagonalOne.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else if(diagonalTwo.every(checkFalse) === true)
+				{
+					oWins();
+				}
+				else
+				{
+					updateDisplay();
+					console.log(box1);
+					console.log(box2);
+					console.log(box3);
+					console.log(box4);
+					console.log(box5);
+					console.log(box6);
+					console.log(box7);
+					console.log(box8);
+					console.log(box9);
+				}
+			}
+
+			$(".box").click(function()
+			{
+					console.log(this.id)
+
+					if(currentTeam === true)
 					{
-						// console.log(str[j]);
-						if(str[j] == str[i] && !(j == i))
+						if(this.id === "1")
 						{
-							// console.log(`hit ${str[j]} and ${str[i]}`);
-							return str[j];
+							if(box1 !== true && box1 !== false)
+							{
+								box1 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "2")
+						{
+							if(box2 !== true && box2 !== false)
+							{
+								box2 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "3")
+						{
+							if(box3 !== true && box3 !== false)
+							{
+								box3 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "4")
+						{
+							if(box4 !== true && box4 !== false)
+							{
+								box4 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "5")
+						{
+							if(box5 !== true && box5 !== false)
+							{
+								box5 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "6")
+						{
+							if(box6 !== true && box6 !== false)
+							{
+								box6 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "7")
+						{
+							if(box7 !== true && box7 !== false)
+							{
+								box7 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "8")
+						{
+							if(box8 !== true && box8 !== false)
+							{
+								box8 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
+						}
+						else if(this.id === "9")
+						{
+							if(box9 !== true && box9 !== false)
+							{
+								box9 = true;	
+								currentTeam = false;
+								$("#" + this.id + "").html("X");
+								checkWin();
+							}
 						}
 					}
-				}
-			}
-			
-			console.log(repeatingLetter("abbac"));
+					else
+					{
+						if(this.id === "1")
+						{
+							if(box1 !== true && box1 !== false)
+							{
+								box1 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "2")
+						{
+							if(box2 !== true && box2 !== false)
+							{
+								box2 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "3")
+						{
+							if(box3 !== true && box3 !== false)
+							{
+								box3 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "4")
+						{
+							if(box4 !== true && box4 !== false)
+							{
+								box4 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "5")
+						{
+							if(box5 !== true && box5 !== false)
+							{
+								box5 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "6")
+						{
+							if(box6 !== true && box6 !== false)
+							{
+								box6 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "7")
+						{
+							if(box7 !== true && box7 !== false)
+							{
+								box7 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "8")
+						{
+							if(box8 !== true && box8 !== false)
+							{
+								box8 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+						else if(this.id === "9")
+						{
+							if(box9 !== true && box9 !== false)
+							{
+								box9 = false;	
+								currentTeam = true;
+								$("#" + this.id + "").html("O");
+								checkWin();
+							}
+						}
+					}
+			});
 		</script>
 	</body>
 <html>
