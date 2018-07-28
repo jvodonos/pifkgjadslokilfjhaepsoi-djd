@@ -29,16 +29,55 @@
 			var box6;
 			var box7;
 			var box8;
-			var box9;
+			var box9; 
 
 			var horizontalOne = [box1, box2, box3];
-			var horizontalTwo = [box4, box5, box6];
+			var horizontalOne = [box1, box2, box3];
 			var horizontalThree = [box7, box8, box9];
 			var verticalOne = [box1, box4, box7];
 			var verticalTwo = [box2, box5, box8];
 			var verticalThree = [box3, box6, box9];
 			var diagonalOne = [box1, box5, box9];
 			var diagonalTwo = [box7, box8, box9];
+			var allBoxes = [box1, box2, box3, box4, box5, box6, box7, box8, box9];
+		
+			function horOne()
+			{
+				horizontalOne = [box1, box2, box3];
+			}
+			function horTwo()
+			{
+				horizontalTwo = [box4, box5, box6];
+			}
+			function horThree()
+			{
+				horizontalThree = [box7, box8, box9];
+			}
+			function verOne()
+			{
+				verticalOne = [box1, box4, box7];				
+			}
+			function verTwo()
+			{
+				verticalTwo = [box2, box5, box8];
+			}
+			function verThree()
+			{
+				verticalThree = [box3, box6, box9];
+			}
+			function diaOne()
+			{
+				diagonalOne = [box1, box5, box9];
+			}
+			function diaTwo()
+			{
+				diagonalTwo = [box7, box8, box9];
+			}
+			function allBox()
+			{
+				allBoxes = [box1, box2, box3, box4, box5, box6, box7, box8, box9];
+			}
+			
 
 
 			bottomDisplay.innerHTML = "Hello!";
@@ -52,7 +91,10 @@
 			{
 				return x === false;
 			}
-			
+			function checkFalseOrTrue(x)
+			{
+				return x === false || x === true;
+			}
 			function updateDisplay()
 			{
 				if(currentTeam === true)
@@ -74,9 +116,21 @@
 			{
 				bottomDisplay.innerHTML = "X Wins!!!";
 			}
-
+			function tie()
+			{
+				bottomDisplay.innerHTML = "Tie.";
+			}
 			function checkWin()
 			{
+				horOne();
+				horTwo();
+				horThree();
+				verOne();
+				verTwo();
+				verThree();
+				diaOne();
+				diaTwo();
+				allBox();
 				if(horizontalOne.every(checkTrue) === true)
 				{
 					xWins();
@@ -140,6 +194,10 @@
 				else if(diagonalTwo.every(checkFalse) === true)
 				{
 					oWins();
+				}
+				else if(allBoxes.every(checkFalseOrTrue) === true)
+				{
+					tie();
 				}
 				else
 				{
